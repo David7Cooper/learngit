@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.lang.Math;
+/**
+*  从键盘输入球体的半径，求其体积和表面积
+*/
 public class Ball{
 	public static void main(String[] args){
 		Scanner input=new Scanner(System.in);
