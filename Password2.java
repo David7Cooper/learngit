@@ -1,9 +1,8 @@
 package newDay;
 import java.util.*;
 public class Password2 {
-
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner input=new Scanner(System.in);
 		System.out.println("请输入你的密码：");
 		String str=input.next();
@@ -15,8 +14,8 @@ public class Password2 {
 		}else{
 			score+=25;
 		}
-		//System.out.println(score);
-		//int sumMax,sumMin,sumNum,sumFu;
+		
+		/*运用ASCII码表，判断String变量中有没有符号，小写字母，大写字母，数字*/	
 		int sumMax=0,sumMin=0,sumNum=0,sumFu=0;
 		for(int i=0;i<str.length();i++){
 			char a=str.charAt(i);
@@ -31,7 +30,7 @@ public class Password2 {
 			}
 		}
 		
-		//加分机制
+	    /*加分机制*/
 		if((sumMax==0&&sumMin!=0)||(sumMax!=0&&sumMin==0)){
 			score+=10;
 		}else if(sumMax==0&&sumMin==0){
@@ -39,7 +38,6 @@ public class Password2 {
 		}else{
 			score+=20;
 		}
-		
 		if(sumNum==0){
 			score+=0;
 		}else if(sumNum==1){
@@ -47,7 +45,6 @@ public class Password2 {
 		}else{
 			score+=20;
 		}
-		
 		if(sumFu==0){
 			score+=0;
 		}else if(sumFu==1){
@@ -55,7 +52,8 @@ public class Password2 {
 		}else{
 			score+=20;
 		}
-		//奖励机制
+		
+		/*奖励机制*/
 		if((sumMax!=0&&sumNum!=0)||(sumMin!=0&&sumNum!=0)){
 			score+=2;
 		}
@@ -66,13 +64,9 @@ public class Password2 {
 			score+=5;
 		}
 		
+		/*打印输出*/
 		System.out.println(score);
 		
-		
-		
-		
-		
-
 	}
-
+	
 }
