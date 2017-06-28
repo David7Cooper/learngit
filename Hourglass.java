@@ -1,4 +1,3 @@
-package com.oaec.hello;
 import java.util.*;
 /**题目
  * 打印沙漏
