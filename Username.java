@@ -11,7 +11,7 @@ import java.util.*;
 public class Username {
 
 	/*NUM是你连续输入的次数*/
-	private static final int NUM=2;
+	private static final int NUM=1;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -27,16 +27,15 @@ public class Username {
 //		int a = 0;
 //		System.out.println(a);
 		
-		/*连续输入3次，一次打印出来*/
+		/*连续输入NUM次，一次打印出来，动态初始化数组*/
 		Scanner input=new Scanner(System.in);
 		System.out.println("请输入你的用户名#密码：");
-		String[] str=new String[3];
-		for(int i=0;i<NUM;i++){
+		String[] str=new String[NUM];
+		for(int i=0;i<str.length;i++){
 			str[i]=input.next();	
 		}
-		
 		/*打印出来*/
-		for(int i=0;i<NUM;i++){
+		for(int i=0;i<str.length;i++){
 			String[] str1=str[i].split("#");//String.split();以#号将字符串分割存入字符串数组中
 			for(int j=0;j<str1.length;j++){
 				if(j%2==0){//判断数组的下标，偶数的是用户名，奇数的是密码
