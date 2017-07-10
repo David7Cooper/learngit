@@ -114,7 +114,7 @@ public class Dvd {
 			String nameStr=input.nextLine();
 			System.out.println("请输入用户密码:");
 			String passWordStr=input.nextLine();
-			for(int i=0;i<3;i++){
+			for(int i=0;i<MAX;i++){
 				if(name[i].equals(nameStr) && passWord[i].equals(passWordStr)){
 					System.out.println("登录成功!!!");
 					customer(index,name,nickName,passWord,sex,age,idNumble,phone,address,dvdId,dvdName,dvdDirector,dvdDate,dvdStock,dvdRent);
