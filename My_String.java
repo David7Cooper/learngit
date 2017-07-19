@@ -1,15 +1,29 @@
-package newDay;
+package com.oaec.hello;
 import java.util.*;
 public class My_String {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		my_contains();
-		my_charAt();
-		my2_charAt();
-		my3_charAt();
-		my_substring();
-		my_indexOf();
+		myString_format();
+//		my_contains();
+//		my_charAt();
+//		my2_charAt();
+//		my3_charAt();
+//		my_substring();
+//		my_indexOf();
+	}
+	
+	public static void myString_format(){
+		Date date=new Date();
+		System.out.println(date);//输出结果  Wed Jul 19 16:39:21 CST 2017
+		System.out.println(String.format("%tA",date));//输出结果  星期三
+		System.out.println(String.format("%ta",date));//输出结果  星期三
+		System.out.println(String.format("%tB",date));//输出结果  七月
+		System.out.println(String.format("%tb",date));//输出结果  七月
+		System.out.println(String.format("%tC",date));//输出结果  20
+		System.out.println(String.format("%tc",date));//输出结果  星期三 七月 19 10:09:42 CST 2017
+		System.out.println(String.format("%tD",date));//输出结果  07/19/17
+		System.out.println(String.format("%td",date));//输出结果  19
 	}
 	
 	/*从键盘输入一串字符串，如果包含1那就将这串字符串的字母全部转化为小写*/
