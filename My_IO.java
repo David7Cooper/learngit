@@ -1,13 +1,24 @@
-package com.oaec.hello;
+package com.oaec.test;
 import java.io.*;
 import java.util.*;
 /**IO流案例*/
 public class My_IO {
 	public static void main(String[] args) throws Exception {
+		io_String();
 //		copy();
-		copy1();
+//		copy1();
 //		copy2();
 //		copy3();
+	}
+	
+	/**String的构造方法可以把字节直接转化为String
+	 * @throws Exception */
+	public static void io_String() throws Exception{
+		File file = new File("F://DvdData.java");
+		BufferedInputStream input = new BufferedInputStream(new FileInputStream(file));
+		byte[] b = new byte[1024];
+		input.read(b);
+		System.out.println(new String(b));	
 	}
 	
 	/**字节流*/
