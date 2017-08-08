@@ -5,10 +5,11 @@ public class ServerTcp {
 	public static void main(String[] args) throws Exception {	
 //		my_Socket();
 //		my1_Socket();
-		my2_Socket();
+//		my2_Socket();
+		my3_Socket();
 	}
 	
-	/**Socket字节流*/
+	/**Socket字节输入流*/
 	public static void my_Socket() throws Exception{
 		/*创建一个ServerSocket对象*/
 		ServerSocket serverSocket = new ServerSocket(3000);
@@ -24,7 +25,7 @@ public class ServerTcp {
 		serverSocket.close();
 	}
 	
-	/**Socket字节流*/
+	/**Socket字节输入流*/
 	public static void my1_Socket() throws Exception{
 		ServerSocket serverSocket = new ServerSocket(3000);
 		Socket socket = serverSocket.accept();
@@ -37,7 +38,7 @@ public class ServerTcp {
 		/*serverSocket.close();*/
 	}
 	
-	/**Socket字符流*/
+	/**Socket字符输入流*/
 	public static void my2_Socket() throws Exception{
 		ServerSocket serverSocket = new ServerSocket(3000);
 		Socket socket = serverSocket.accept();
@@ -45,6 +46,16 @@ public class ServerTcp {
 		while(reader.ready()){
 			System.out.println("server"+reader.readLine());
 		}	
+		reader.close();
+		socket.close();
+		serverSocket.close();
+	}
+	
+	public static void my3_Socket() throws Exception{
+		ServerSocket serverSocket = new ServerSocket(3000);
+		Socket socket = serverSocket.accept();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		System.out.print(reader.readLine());
 		reader.close();
 		socket.close();
 		serverSocket.close();
