@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ <hibernate-mapping package="com.iotek.association.one2one.proj">
+ 	<class name="Passport" table="T_PASSPORT_FK">
+ 		<id name="id" column="ID" type="java.lang.Long">
+ 			<generator class="sequence">
+ 				<param name="sequence">t_passport_fk_seq</param>
+ 			</generator>
+ 		</id>
+ 		<property name="bh" column="BH" type="java.lang.String"></property>
+ 		<many-to-one name="person" class="Person" column="PERSON_ID" unique="true"></many-to-one>
+ 	</class>
+ </hibernate-mapping>
