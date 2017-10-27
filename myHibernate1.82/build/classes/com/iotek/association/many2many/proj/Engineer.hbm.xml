@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+ 
+ <hibernate-mapping package="com.iotek.association.many2many.proj">
+ 	<class name="Engineer" table="T_ENGINEER">
+ 		<id name="id" column="ID" type="java.lang.Long">
+ 			<generator class="sequence">
+ 				<param name="sequence">t_engineer_seq</param>
+ 			</generator>
+ 		</id>
+ 		<property name="name" column="NAME" type="java.lang.String"></property>
+ 		<property name="gender" column="GENDER" type="java.lang.String"></property>
+ 		<property name="age" column="AGE" type="java.lang.Integer"></property>
+ 		<property name="company" column="COMPANY" type="java.lang.String"></property>
+ 		<set name="technologies" table="T_ENGINEER_TECHNOLOGY" cascade="all" inverse="true">
+ 			<key column="ENGINEER_ID">
+ 				<many-to-many column="TECHNOLOGY_ID" class="Technology"></many-to-many>
+ 			</key>
+ 		</set>
+ 	</class>
+ </hibernate-mapping>

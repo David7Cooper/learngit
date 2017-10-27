@@ -1,0 +1,66 @@
+【ORM简介】
+ORM(Object Relationship Mapping),把内存中的对象映射到数据库中
+Hibernate底层实现就是JDBC
+JPA(Java Persistence API),JPA就是Hibernate的一个子集
+【HIbernate简介】
+Hibernate框架可以用HIbernate API来访问数据库，也可以用JDBC API来访问数据库（体现了对JDBC的轻量级封装）
+下载地址：www.hibernate.org
+Persistent Objects，持久化对象，就是实体类
+【第一个Hibernate程序】
+hibernate.cfg.xml主要用来配置用任意关系型数据库进行连接用到的参数（Driver，URL，User和Password）
+Hibernate流程：
+——>建表
+——>配置hibernate.cfg.xml
+——>创建实体类Student
+——>配置Student.hbm.xml
+——>创建Configuration对象
+——>创建SessionFactory对象
+——>创建Session对象
+——>创建Transaction对象
+property指的是getter，setter方法
+attribute指的是类中的属性
+【session的优化】
+SessionFactory是线程安全的（意思是SessionFactory对象可被多个线程共享）
+Session是线程不安全的（意思是一个Session对象对应一个线程）
+如果应用只访问一个数据库，只需要创建一个SessionFactory对象
+【基本关系对象映射1】
+<hibernate-mapping>
+	package  指定一个包前缀
+
+	schema  值为当前数据库的名称（默认值为当前数据库名称）
+	default-cascade  级联风格（默认值为none）
+	default-access  访问方式（默认值为property）
+	default-lazy  延迟加载（默认值为true）
+	auto-import  指定类名（默认值为true）	
+</hibernate-mapping>
+<class>
+	name = "Classname"
+	table = "tableName"
+	type = "java.lang.String"
+
+	discriminator-value  区分不同子类的值，默认和类名一样
+	schema  覆盖<hibernate-mapping>里面的schema
+</class>
+<generator>
+标识符生成器由Hibernate以递增的方式为代理主键赋值
+</generator>
+【关联关系映射1】(一对一双向关联)
+基于外键映射
+把主表（one-to-one）删了，与之关联的表（有外键的表）也会被删除
+【关联关系映射2】(一对一双向关联)
+基于主键映射
+【关联关系映射3】（一对多双向关联）
+JDBC中数据库的配置，jdbcinfo.properties文件
+Oracle
+	driver=oracle.jdbc.driver.OracleDriver
+	url=jdbc:oracle:thin:@localhost:1521:XE
+	uname=erhia
+	upass=erhia
+Mysql 
+	driver=com.mysql.jdbc.Driver
+	url=jdbc:mysql://localhost:3306/test
+	uname=root
+	upass=123
+【关联关系映射4】（多对多关联关系的映射）
+
+
