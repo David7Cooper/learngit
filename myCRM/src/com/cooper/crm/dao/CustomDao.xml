@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cooper.crm.dao.CustomDao">
+	<select id="selectAll" resultType="com.cooper.crm.bean.Custom">
+		select * from custom
+	</select>
+	<!-- 保存修改 -->
+	<update id="updateCustom" parameterType="com.cooper.crm.bean.Custom">
+		update custom set name=#{name},education=#{education},phoneNo=#{phoneNo},qq=#{qq},email=#{email},customStatu=#{customStatu} where id=#{id}
+	</update>
+	<!-- 分页小王子 -->
+	<select id="page1" resultType="com.cooper.crm.bean.Custom">
+		select * from custom
+		<where>
+			(1=1)
+			<if test="param1.name!=null">
+				and name like #{param1.name}
+			</if>
+			<if test="param1.customStatu!=null">
+				and customStatu=#{param1.customStatu}
+			</if>
+			<if test="param1.inviteName!=null">
+				and inviteName like #{param1.inviteName}
+			</if>
+			<if test="param1.phoneNo!=null">
+				and phoneNo like #{param1.phoneNo}
+			</if>
+			<if test="param1.createDate!=null">
+				and createDate = #{param1.createDate}
+			</if>
+		</where>
+		limit #{param2},#{param3}	
+	</select>
+
+	<!-- <select id="page1" parameterType="com.cooper.crm.bean.Custom" resultType="java.lang.Integer">
+		select count(*) from custom
+		<where>
+			(1=1)
+			<if test="name!=null">
+				and name like #{name}
+			</if>
+			<if test="customStatu!=null">
+				and customStatu = #{customStatu}
+			</if>
+			<if test="inviteName!=null">
+				and inviteName like #{inviteName}
+			</if>
+			<if test="phoneNo!=null">
+				and phoneNo like #{phoneNo}
+			</if>
+			<if test="createDate!=null">
+				and createDate = #{createDate}
+			</if>
+		</where>
+	</select> -->
+<!-- ———————————————————————————————————————————————————————————————————————————— -->
+	<resultMap type="com.cooper.crm.bean.Custom" id="CustomResultMapper">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="education" column="education"/>
+		<result property="phoneNo" column="phoneNo"/>
+		<result property="qq" column="qq"/>
+		<result property="email" column="email"/>
+		<result property="customStatu" column="customStatu"/>
+		<result property="createDate" column="createDate"/>
+		<result property="inviteName" column="inviteName"/>
+		<association property="customInfo" javaType="com.cooper.crm.bean.CustomInfo">
+			<id property="id" column="costomId"/>
+			<result property="customId" column="customId"/>
+			<result property="followManId" column="followManId"/>
+			<result property="statu" column="statu"/>
+			<result property="startDate" column="startDate"/>
+			<result property="planDate" column="planDate"/>
+			<result property="lastFollowDate" column="lastFollowDate"/>
+			<result property="mark" column="mark"/>
+		</association>
+		<collection property="consultRecords" column="costomId" ofType="com.cooper.crm.bean.ConsultRecord">
+			<id property="id" column="id"/>
+			<result property="customId" column="customId"/>
+			<result property="consultStatu" column="consultStatu"/>
+			<result property="consultManId" column="consultManId"/>
+			<result property="consultDate" column="consultDate"/>
+			<result property="result" column="result"/>
+		</collection>
+	</resultMap>
+<!-- 查询到的是既在Custom表中又在CustomInfo表中又在CustomRecord表中的数据 -->
+	<select id="selectAllBy3" resultMap="CustomResultMapper">
+		select * 
+		from Custom c,CustomInfo ci,ConsultRecord cr
+		where c.id=ci.customId and c.id=cr.customId
+	</select>
+</mapper>
